@@ -18,19 +18,20 @@ jobs:
     - uses: actions/setup-go@v1
       with:
         go-version: '1.13.5'
+    - uses: kevinearls/setup-minikube@v1-release
 
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
       run: echo Hello, world!
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-
     - name: Test
       run: go test -v .
+
+    - name: "setup docker"
+      run: ./.ci/setup-docker.sh
+
+    - name: "start minikube"
+      run: ./.ci/start-minikube.sh
