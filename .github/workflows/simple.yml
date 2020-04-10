@@ -20,7 +20,7 @@ jobs:
         go-version: '1.13.5'
     - uses: jpkrohling/setup-minikube@v1-release
       with:
-        minikube-version: v1.9.2
+        minikube-version: v1.4.0
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
