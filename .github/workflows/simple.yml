@@ -18,7 +18,7 @@ jobs:
     - uses: actions/setup-go@v1
       with:
         go-version: '1.13.5'
-    - uses: kevinearls/setup-minikube@v1-release
+    - uses: kevinearls/setup-minikube@v1.1-release
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
