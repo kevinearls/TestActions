@@ -35,3 +35,7 @@ jobs:
 
     - name: "start minikube"
       run: ./.ci/start-minikube.sh
+
+    - name: "Versions"
+      run: ./.ci/check-versions.sh
+
