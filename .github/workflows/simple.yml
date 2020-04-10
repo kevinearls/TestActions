@@ -33,4 +33,4 @@ jobs:
         echo test, and deploy your project.
 
     - name: Test
-        run: go test -v .
+      run: go test -v .
