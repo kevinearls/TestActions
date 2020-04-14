@@ -13,7 +13,7 @@ set -x
 # https://github.com/coreos/prometheus-operator/blob/master/scripts/create-minikube.sh
 
 # socat is needed for port forwarding
-sudo apt-get update && sudo apt-get install socat
+sudo apt-get update && sudo apt-get install socat && sudo apt autoremove
 
 #export MINIKUBE_VERSION=v1.0.0
 export KUBERNETES_VERSION=v1.14.0
@@ -36,9 +36,9 @@ cat /run/systemd/resolve/resolv.conf || true
 sleep 5
 echo "--------------------------- End of /run/systemd/resolve/resolv.conf ---------------------------"
 
-
-
 sleep 5
+
+systemd-resolve --status"
 
 # minikube config
 minikube config set WantNoneDriverWarning false
@@ -46,7 +46,7 @@ minikube config set vm-driver none
 
 minikube version
 sudo ${MINIKUBE} delete
-sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC --extra-config="kubelet.resolvConf=/run/systemd/resolve/resolv.conf"
+sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC --extra-config="kubelet.resolvConf=/etc/resolv.conf"
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 
 minikube update-context
