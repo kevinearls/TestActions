@@ -26,23 +26,13 @@ sudo mount --make-rshared /sys
 
 mkdir "${HOME}"/.kube || true
 touch "${HOME}"/.kube/config
-#echo "--------------------------- etc/resolv.conf ---------------------------"
-#cat /etc/resolv.conf
-#sleep 5
-#echo "--------------------------- /run/systemd/resolve/resolv.conf ---------------------------"
-#cat /run/systemd/resolve/resolv.conf || true
-#sleep 5
-#echo "--------------------------- End of /run/systemd/resolve/resolv.conf ---------------------------"
-#sleep 5
-#systemd-resolve --status
-#sleep 5
 
 # minikube config
 minikube config set WantNoneDriverWarning false
 minikube config set vm-driver none
 minikube version
 
-sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC --extra-config="kubelet.resolvConf=/run/systemd/resolve/resolv.conf"
+sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 
 minikube update-context
