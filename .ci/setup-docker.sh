@@ -41,6 +41,8 @@ sudo ls -alF /etc/docker/daemon.json
 sleep 2
 sudo cat /etc/docker/daemon.json
 sleep 2
+sudo ls -ld /etc/docker
+sleep 2
 
 # Setup daemon.
 sudo rm /etc/docker/daemon.json
