@@ -38,7 +38,7 @@ echo "--------------------------- End of /run/systemd/resolve/resolv.conf ------
 
 sleep 5
 
-systemd-resolve --status"
+systemd-resolve --status
 
 # minikube config
 minikube config set WantNoneDriverWarning false
