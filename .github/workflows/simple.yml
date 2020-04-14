@@ -50,8 +50,8 @@ jobs:
     - name: Test
       run: go test -v .
 
-    - name: "setup docker"
-      run: ./.ci/setup-docker.sh
+    #- name: "setup docker"
+    #  run: ./.ci/setup-docker.sh
 
     - name: "start minikube"
       run: ./.ci/start-minikube.sh
