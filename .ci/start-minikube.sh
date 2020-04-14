@@ -40,18 +40,9 @@ touch "${HOME}"/.kube/config
 # minikube config
 minikube config set WantNoneDriverWarning false
 minikube config set vm-driver none
-
-
-cat /proc/sys/net/bridge/bridge-nf-call-iptables
-sleep 2
-
-
 minikube version
-sudo ${MINIKUBE} delete
-sudo echo "1" >/proc/sys/net/bridge/bridge-nf-call-iptables
-cat /proc/sys/net/bridge/bridge-nf-call-iptables
-sleep 2
 
+sudo ${MINIKUBE} delete
 sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 
