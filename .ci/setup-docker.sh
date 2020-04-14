@@ -20,7 +20,7 @@ set -x
 
 
 # From https://kubernetes.io/docs/setup/production-environment/container-runtimes/
-sudo apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg2
+sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common gnupg2
 
 ### Add Docker’s official GPG key
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
