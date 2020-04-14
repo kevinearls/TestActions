@@ -11,5 +11,7 @@ set -x
 minikube version
 kubectl version
 
-kubectl get all --namespace default
 kubectl get namespaces
+kubectl get all --namespace default
+kubectl get all --namespace kube-system
+
