@@ -15,8 +15,8 @@ set -x
 # socat is needed for port forwarding
 sudo apt-get update && sudo apt-get install socat && sudo apt autoremove
 
-export MINIKUBE_VERSION=v1.0.0
-export KUBERNETES_VERSION=v1.14.0
+export MINIKUBE_VERSION=v1.6.2
+export KUBERNETES_VERSION=v1.17.0
 
 MINIKUBE=$(which minikube) # it's outside of the regular PATH, so, need the full path when calling with sudo
 
@@ -59,7 +59,6 @@ JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.ty
 # waiting for kube-dns to be ready
 # kubectl -n kube-system get pods -lk8s-app=kube-dns
 kubectl get pods --all-namespaces
-
 
 # Get the log from one of the dns pods
 export ONEDNSPOD=$(kubectl --namespace kube-system get pods -lk8s-app=kube-dns | grep coredns | head -1 | awk '{print $1}')
