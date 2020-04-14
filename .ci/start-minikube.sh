@@ -42,8 +42,7 @@ minikube config set WantNoneDriverWarning false
 minikube config set vm-driver none
 minikube version
 
-sudo ${MINIKUBE} delete
-sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC
+sudo ${MINIKUBE} start --kubernetes-version=$KUBERNETES_VERSION --extra-config=apiserver.authorization-mode=RBAC --extra-config="kubelet.resolvConf=/run/systemd/resolve/resolv.conf"
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 
 minikube update-context
