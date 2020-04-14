@@ -20,17 +20,17 @@ jobs:
         go-version: '1.13.5'
     - uses: jpkrohling/setup-minikube@v1-release
       with:
-        minikube-version: v1.6.2
+        minikube-version: v1.7.2
     # 1.4.0 -- failed
     # 1.5.0 -- worked
     # 1.5.1 -- worked
     # 1.5.2 -- worked
     # 1.6.0 -- worked
     # 1.6.1
-    # 1.6.2
+    # 1.6.2 -- worked
     # 1.7.0
     # 1.7.1
-    # 1.7.2
+    # 1.7.2 --
     # 1.7.3
     # 1.8.0
     # 1.8.1
