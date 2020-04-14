@@ -37,16 +37,8 @@ sudo apt-get update && sudo apt-get install -y \
   docker-ce=5:19.03.8~3-0~ubuntu-$(lsb_release -cs) \
   docker-ce-cli=5:19.03.8~3-0~ubuntu-$(lsb_release -cs)
 
-sudo ls -alF /etc/docker/daemon.json
-sleep 2
-sudo cat /etc/docker/daemon.json
-sleep 2
-sudo ls -ld /etc/docker
-sleep 2
-
 # Setup daemon.
-sudo rm /etc/docker/daemon.json
-sudo cat > /etc/docker/daemon.json <<EOF
+cat > daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
@@ -56,6 +48,9 @@ sudo cat > /etc/docker/daemon.json <<EOF
   "storage-driver": "overlay2"
 }
 EOF
+
+sudo rm /etc/docker/daemon.json
+sudo mv daemon.json /etc/docker/daemon.json
 
 sudo mkdir -p /etc/systemd/system/docker.service.d
 
