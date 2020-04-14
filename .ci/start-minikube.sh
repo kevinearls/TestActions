@@ -26,6 +26,9 @@ sudo mount --make-rshared /sys
 
 mkdir "${HOME}"/.kube || true
 touch "${HOME}"/.kube/config
+cat /etc/resolv.conf
+
+cat /run/systemd/resolve/resolv.conf || true
 
 # minikube config
 minikube config set WantNoneDriverWarning false
