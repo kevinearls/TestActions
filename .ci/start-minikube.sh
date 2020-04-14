@@ -15,7 +15,7 @@ set -x
 # socat is needed for port forwarding
 sudo apt-get update && sudo apt-get install socat && sudo apt autoremove
 
-#export MINIKUBE_VERSION=v1.0.0
+export MINIKUBE_VERSION=v1.0.0
 export KUBERNETES_VERSION=v1.14.0
 
 MINIKUBE=$(which minikube) # it's outside of the regular PATH, so, need the full path when calling with sudo
@@ -26,19 +26,16 @@ sudo mount --make-rshared /sys
 
 mkdir "${HOME}"/.kube || true
 touch "${HOME}"/.kube/config
-echo "--------------------------- etc/resolv.conf ---------------------------"
-cat /etc/resolv.conf
-
-sleep 5
-echo "--------------------------- /run/systemd/resolve/resolv.conf ---------------------------"
-
-cat /run/systemd/resolve/resolv.conf || true
-sleep 5
-echo "--------------------------- End of /run/systemd/resolve/resolv.conf ---------------------------"
-
-sleep 5
-
-systemd-resolve --status
+#echo "--------------------------- etc/resolv.conf ---------------------------"
+#cat /etc/resolv.conf
+#sleep 5
+#echo "--------------------------- /run/systemd/resolve/resolv.conf ---------------------------"
+#cat /run/systemd/resolve/resolv.conf || true
+#sleep 5
+#echo "--------------------------- End of /run/systemd/resolve/resolv.conf ---------------------------"
+#sleep 5
+#systemd-resolve --status
+#sleep 5
 
 # minikube config
 minikube config set WantNoneDriverWarning false
