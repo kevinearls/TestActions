@@ -28,7 +28,7 @@ jobs:
     # 1.5.2 -- worked  kubernetes 1.16.2   -- worked with ubuntu 16.04
     # 1.6.0 -- worked  kubeernetes 1.17.0
     # 1.6.1
-    # 1.6.2 -- worked  kubernetes  1.17.0
+    # 1.6.2 -- worked  kubernetes  1.17.0  on ubuntu 16.04 we start getting systemd related messages.
     # 1.7.0
     # 1.7.1
     # 1.7.2 -- failed

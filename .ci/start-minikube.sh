@@ -38,25 +38,14 @@ sudo chown -R $USER $HOME/.kube $HOME/.minikube
 minikube update-context
 
 # waiting for node(s) to be ready
-echo FIRST
 JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1; done
 
-# waiting for kube-addon-manager to be ready
-echo SECOND
-#JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n kube-system get pods -lcomponent=kube-addon-manager -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for kube-addon-manager to be available"; kubectl get pods --all-namespaces; done
-kubectl wait --for=condition=Ready pod/kube-addon-manager-minikube  --namespace kube-system --timeout=60s || true
-
 # waiting for kube-dns to be ready
-# kubectl -n kube-system get pods -lk8s-app=kube-dns
-kubectl get pods --all-namespaces
-
-# Get the log from one of the dns pods  -- TODO check both?
-export ONEDNSPOD=$(kubectl --namespace kube-system get pods -lk8s-app=kube-dns | grep coredns | head -1 | awk '{print $1}')
-kubectl wait --for=condition=Ready pod/${ONEDNSPOD} --namespace kube-system --timeout=60s || true
-kubectl logs --namespace kube-system $ONEDNSPOD
-sleep 3
-
-###### JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for kube-dns to be available"; kubectl get pods --all-namespaces; done
+export COREDNSPODS=$(kubectl --namespace kube-system get pods -lk8s-app=kube-dns | grep coredns | head -1 | awk '{print $1}')
+for POD in ${COREDNSPODS}
+do
+    kubectl wait --for=condition=Ready pod/${POD}  --namespace kube-system --timeout=60s
+done
 
 sudo ${MINIKUBE} addons enable ingress
 
